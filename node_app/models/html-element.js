@@ -2,42 +2,30 @@
 
 module.exports.HTMLElement = class HTMLElement {
 	constructor(data) {
-		this._element = data.element;
+		this._type = data.type;
+		
+		this._id = "";
+		this._class = "";
+		this._style = "";
 
-		this._type = this._getElementType(data.element);
-		this._id = this._getElementId(data.element);
-		this._class = this._getElementClass(data.element);
-		this._style = this._getElementStyle(data.element);
-	}
+		for (var attribute in data.attributes) {
+			if (attribute.toLowerCase() == "id") this._id = data.attributes[attribute];
+			if (attribute.toLowerCase() == "class") this._class = data.attributes[attribute];
+			if (attribute.toLowerCase() == "style") this._style = data.attributes[attribute];
+		}
 
-	_getElementType(element) {
-		var elementParts = [];
+		this._children = [];
 
-		if (element.endsWith("/>")) elementParts = element.substring(1,element.length-2).split(" ");
-		else elementParts = element.substring(1,element.length-1).split(" ");
-
-		if (elementParts.length > 0) return elementParts[0];
-		else return "";
-	}
-
-	_getElementId(element) {
-		var found = element.match(/id="([^"]*?)"/);
-
-		if (found) return found[1];
-		else return "";
-	}
-
-	_getElementClass(element) {
-		var found = element.match(/class="([^"]*?)"/);
-
-		if (found) return found[1];
-		else return "";
-	}
-
-	_getElementStyle(element) {
-		var found = element.match(/style="([^"]*?)"/);
-
-		if (found) return found[1];
-		else return "";
+		if(data.children) {
+			for (var i=0; i<data.children.length; i++) {
+	            if ((data.children[i].name) && (data.children[i].name.length)) {
+	                this._children.push(new HTMLElement({
+	                    type: data.children[i].name,
+	                    attributes: data.children[i].attribs,
+	                    children: data.children[i].children
+	                }));
+	            }
+			}
+		}
 	}
 }
