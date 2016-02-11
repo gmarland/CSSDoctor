@@ -10,7 +10,6 @@ module.exports.HTMLPage = class HTMLPage {
         this._location = data.location;
 
         this._elements = this._parseHTMLElements(FilesHelpers.GetContents(this._location));
-        console.log(this._elements);
 	}
 
     _parseHTMLElements(htmlContents) {
