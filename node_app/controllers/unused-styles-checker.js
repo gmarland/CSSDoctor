@@ -45,13 +45,28 @@ exports.Process = function(stylesheetSet, htmlPageSet) {
 			}
 
 			if (elements.length === 0) {
-				unusedStyles.push(styles[i]);
+				unusedStyles.push({
+					stylesheet: styles[i].getStylesheet(),
+					name: styles[i].getName()
+				});
 				break;
 			}
 		}
 	}
 
+	unusedStyles.sort(function (a, b) {
+		return a.stylesheet.trim().toLowerCase() > b.stylesheet.trim().toLowerCase() ? 1 : a.stylesheet.trim().toLowerCase() < b.stylesheet.trim().toLowerCase() ? -1 : 0;
+	});
+
+	var currentSS = null;
+
 	for (var i=0; i<unusedStyles.length; i++) {
-		console.log(unusedStyles[i].getName());	
+		if (unusedStyles[i].stylesheet !== currentSS) {
+			currentSS = unusedStyles[i].stylesheet;
+			console.log("");
+			console.log(unusedStyles[i].stylesheet);	
+		}
+
+		console.log(unusedStyles[i].name);
 	}
 };

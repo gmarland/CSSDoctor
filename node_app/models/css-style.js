@@ -4,6 +4,7 @@ var Property = require("./property").Property;
 
 module.exports.CSSStyle = class CSSStyle {
 	constructor(data) {
+		this._stylesheet = data.stylesheet;
 		this._name = data.name;
 		this._group = data.group;
 
@@ -11,6 +12,10 @@ module.exports.CSSStyle = class CSSStyle {
 	}
 
     // Public Methods
+
+    getStylesheet() {
+    	return this._stylesheet;
+    }
 
     getName() {
     	return this._name;

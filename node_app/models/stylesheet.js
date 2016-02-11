@@ -33,6 +33,7 @@ module.exports.StyleSheet = class StyleSheet {
 
         		for (var j=0; j<allStylesNames.length; j++) {
         			var styleData = {
+                        stylesheet: this._location,
     	    			name: allStylesNames[j],
     	    			group: allStylesNames,
     	    			styles: styleContents[0]

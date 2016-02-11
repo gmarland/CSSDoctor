@@ -40,5 +40,6 @@ if ((cssPath) && (htmlPath)) {
 	var unusedStylesChecker = require("./node_app/controllers/unused-styles-checker");
 
 	console.log(unusedStylesChecker.GetDescription());
+	console.log("");
 	unusedStylesChecker.Process(stylesheetSet, htmlPageSet);
 }
