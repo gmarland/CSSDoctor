@@ -13,6 +13,12 @@ module.exports.StyleSheet = class StyleSheet {
         this._styles = this._parseStyles(FilesHelpers.GetContents(this._location));
     }
 
+    // Public Methods
+
+    getStyles() {
+        return this._styles;
+    }
+
     // Private Methods
 
     _parseStyles(cssContents) {

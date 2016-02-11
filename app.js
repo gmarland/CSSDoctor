@@ -34,4 +34,11 @@ if ((cssPath) && (htmlPath)) {
 
 	console.log("The doctor is in!");
 	console.log("");
+
+	// Load the module for checking for unused styles
+
+	var unusedStylesChecker = require("./node_app/controllers/unused-styles-checker");
+
+	console.log(unusedStylesChecker.GetDescription());
+	unusedStylesChecker.Process(stylesheetSet, htmlPageSet);
 }

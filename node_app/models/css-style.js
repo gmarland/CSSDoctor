@@ -10,6 +10,25 @@ module.exports.CSSStyle = class CSSStyle {
 		this._properties = this._parseProperties(data.styles);
 	}
 
+    // Public Methods
+
+    getName() {
+    	return this._name;
+    }
+
+    getStyleTree() {
+    	var parts = this._name.split(" "),
+    		cleanedParts = [];
+
+    	for (var i=0; i<parts.length; i++) {
+    		cleanedParts.push(parts[i].trim());
+    	}
+
+        return cleanedParts;
+    }
+
+    // Private Methods
+
 	_parseProperties(styles) {
 		var trimmedStyles = styles.replace(/\r?\n|\r/g, "").replace(/ +(?= )/g, "").trim();
 		trimmedStyles = trimmedStyles.substring(1, (trimmedStyles.length-1))

@@ -12,6 +12,40 @@ module.exports.HTMLPage = class HTMLPage {
         this._elements = this._parseHTMLElements(FilesHelpers.GetContents(this._location));
 	}
 
+    // Public Methods
+
+    getElementByType(elementType) {
+        var elements = [];
+
+        for (var i=0; i<this._elements.length; i++) {
+            elements = elements.concat(this._elements[i].getElementByType(elementType));
+        }
+
+        return elements;
+    }
+
+    getElementById(elementId) {
+        var elements = [];
+
+        for (var i=0; i<this._elements.length; i++) {
+            elements = elements.concat(this._elements[i].getElementById(elementId));
+        }
+
+        return elements;
+    }
+
+    getElementByClass(elementClass) {
+        var elements = [];
+
+        for (var i=0; i<this._elements.length; i++) {
+            elements = elements.concat(this._elements[i].getElementByClass(elementClass));
+        }
+
+        return elements;
+    }
+
+    // Private Methods
+
     _parseHTMLElements(htmlContents) {
         var elements = [];
 

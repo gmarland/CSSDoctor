@@ -10,6 +10,20 @@ module.exports.StyleSheetSet = class StyleSheetSet {
         this._stylesheets = this._getStylesheets(data.location);
     }
 
+    // Public Methods
+
+    getAllStyles() {
+        var allStyles = [];
+
+        for (var i=0; i<this._stylesheets.length; i++) {
+            allStyles = allStyles.concat(this._stylesheets[i].getStyles());
+        }
+
+        return allStyles;
+    }
+
+    // Private Methods
+
     _getStylesheets(location) {
     	var stylesheets = [];
 
